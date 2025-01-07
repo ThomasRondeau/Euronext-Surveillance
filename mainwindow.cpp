@@ -94,7 +94,7 @@ void MainWindow::updateData()
     m_priceSeries->append(m_dataPoints, 100 + dis(gen));
     if (m_priceSeries->count() > 50)
         m_priceSeries->remove(0);
-
+    
     m_priceChart->axes(Qt::Horizontal).first()->setRange(m_dataPoints - 50, m_dataPoints);
     m_priceChart->axes(Qt::Vertical).first()->setRange(0, 200);
 
