@@ -3,26 +3,20 @@
 MultipleViewsWindow::MultipleViewsWindow(QWidget* parent)
     : QMainWindow(parent)
 {
-    // Création du widget central
     centralWidget = new QWidget(this);
     setCentralWidget(centralWidget);
 
-    // Layout principal horizontal
     mainLayout = new QHBoxLayout(centralWidget);
 
-    // Création du menu latéral
     createSideMenu();
 
-    // Création du widget empilé pour les différentes pages
     stackedWidget = new QStackedWidget;
     createPages();
 
-    // Ajout des widgets au layout principal
     mainLayout->addWidget(sideMenu);
     mainLayout->addWidget(stackedWidget);
 
-    // Définir une taille minimale pour la fenêtre
-    setMinimumSize(800, 600);
+    setMinimumSize(1280, 720);
 }
 
 void MultipleViewsWindow::createSideMenu()
@@ -31,9 +25,9 @@ void MultipleViewsWindow::createSideMenu()
     menuLayout = new QVBoxLayout(sideMenu);
 
     // Création des boutons du menu
-    QPushButton* page1Button = new QPushButton("Page 1");
-    QPushButton* page2Button = new QPushButton("Page 2");
-    QPushButton* page3Button = new QPushButton("Page 3");
+    QPushButton* page1Button = new QPushButton("Executed scan");
+    QPushButton* page2Button = new QPushButton("Order book scan");
+    QPushButton* page3Button = new QPushButton("Raw Data");
 
     // Style pour le menu latéral
     sideMenu->setMaximumWidth(200);

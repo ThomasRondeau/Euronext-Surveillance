@@ -35,24 +35,48 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
+    <Filter Include="Header Files\Connectors">
+      <UniqueIdentifier>{9e5f2bcb-3a1f-4824-8d02-2434865e0435}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Processors">
+      <UniqueIdentifier>{456ce8e0-9a89-4b9a-88b6-979d3ca082a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Visualisers">
+      <UniqueIdentifier>{4eb9a2d3-8fbc-4a18-80fe-8cbba8b96b26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\UI">
+      <UniqueIdentifier>{4f76019f-f4b5-4c30-9e3c-a42bdd89413f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Connectors">
+      <UniqueIdentifier>{52474eda-7759-4d0b-988a-233014201df9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Visualisers">
+      <UniqueIdentifier>{3fec2713-d38a-469a-9f4a-b913b7a03a05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UI">
+      <UniqueIdentifier>{e7dd815b-8b3e-4922-b615-31ebb8d3f1f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Processors">
+      <UniqueIdentifier>{c9f6a3d9-4756-4c9b-a5bf-c9321fde805c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="mainwindow.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\UI</Filter>
     </ClCompile>
     <ClCompile Include="multipleViewsWindow.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="mainwindow.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\UI</Filter>
     </QtMoc>
     <QtMoc Include="multipleViewsWindow.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\UI</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
