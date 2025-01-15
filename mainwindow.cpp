@@ -4,6 +4,8 @@
 #include <QTimer>
 #include <random>
 
+
+// OLD INTERFACE, not used anymore
 MainWindow::MainWindow(QWidget* parent)
     : QWidget(parent)
     , m_matchesLCD(new QLCDNumber(this))
@@ -84,12 +86,10 @@ void MainWindow::updateData()
     static std::mt19937 gen(rd());
     static std::uniform_real_distribution<> dis(0, 100);
 
-    // Mise à jour des métriques
     m_matchesLCD->display(static_cast<int>(dis(gen)));
     m_ordersLCD->display(static_cast<int>(dis(gen) * 2));
     m_latencyLCD->display(static_cast<int>(dis(gen) * 10));
 
-    // Mise à jour du graphique
     m_dataPoints++;
     m_priceSeries->append(m_dataPoints, 100 + dis(gen));
     if (m_priceSeries->count() > 50)
@@ -98,7 +98,6 @@ void MainWindow::updateData()
     m_priceChart->axes(Qt::Horizontal).first()->setRange(m_dataPoints - 50, m_dataPoints);
     m_priceChart->axes(Qt::Vertical).first()->setRange(0, 200);
 
-    // Mise à jour du carnet d'ordres
     for (int i = 0; i < 10; ++i) {
         double basePrice = 100.0;
         m_orderBookTable->setItem(i, 0, new QTableWidgetItem(

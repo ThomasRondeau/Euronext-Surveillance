@@ -7,6 +7,14 @@
 #include <QVBoxLayout>
 #include <QWidget>
 #include <QLabel>
+#include <QtCore>
+#include <QtGui>
+#include <QtCharts>
+#include <QtCharts/QChart>
+#include <QtCharts/QChartView>
+#include <QtCharts/QLineSeries>
+#include <QTableWidget>
+#include <QLCDNumber>
 
 class MultipleViewsWindow : public QMainWindow
 {
@@ -26,8 +34,16 @@ private:
     QVBoxLayout* menuLayout;
     QStackedWidget* stackedWidget;
 
+    // Graphic components -- TODO
+    QChart* m_priceChart;
+    QLineSeries* m_priceSeries;
+    QChartView* m_chartView;
+
+
     void createSideMenu();
     void createPages();
+
+    void createPriceChart();
 };
 
 #endif

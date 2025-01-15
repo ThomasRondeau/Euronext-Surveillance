@@ -30,17 +30,17 @@ private:
     void createPriceChart();
     void createOrderBookDisplay();
 
-    // Composants UI pour les métriques
+    // Metrics UI components
     QLCDNumber* m_matchesLCD;
     QLCDNumber* m_ordersLCD;
     QLCDNumber* m_latencyLCD;
 
-    // Composants pour le graphique
+	// Graphical components
     QChart* m_priceChart;
     QLineSeries* m_priceSeries;
     QChartView* m_chartView;
 
-    // Composant pour le carnet d'ordres
+	// Order book UI components
     QTableWidget* m_orderBookTable;
 
     int m_dataPoints{0};
