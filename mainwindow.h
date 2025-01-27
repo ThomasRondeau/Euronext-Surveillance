@@ -2,48 +2,31 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QtCore>
-#include <QtGui>
-#include <QtCharts>
-#include <QWidget>
-#include <QtCharts/QChart>
-#include <QtCharts/QChartView>
-#include <QtCharts/QLineSeries>
-#include <QTableWidget>
-#include <QLCDNumber>
 
+class QPushButton;
+class QVBoxLayout;
+class QWidget;
 
-class MainWindow : public QWidget
-{
+enum class WindowType {
+    LISTING,
+    SURVEILLANCE
+};
+
+class MainWindow : public QMainWindow {
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget* parent = nullptr);
+    MainWindow(QWidget* parent = nullptr);
     ~MainWindow();
+    void openNewWindow(WindowType type);
 
 private slots:
-    void updateData();
+    void closeAndTransferOwnership(QMainWindow* newWindow);
+    void onNewWindowDestroyed();  // Nouveau slot dédié
 
 private:
-    void setupUI();
-    void createMetricsDisplay();
-    void createPriceChart();
-    void createOrderBookDisplay();
-
-    // Metrics UI components
-    QLCDNumber* m_matchesLCD;
-    QLCDNumber* m_ordersLCD;
-    QLCDNumber* m_latencyLCD;
-
-	// Graphical components
-    QChart* m_priceChart;
-    QLineSeries* m_priceSeries;
-    QChartView* m_chartView;
-
-	// Order book UI components
-    QTableWidget* m_orderBookTable;
-
-    int m_dataPoints{0};
-    QTimer* m_timer;
+    QMainWindow* createListingWindow();
+    QMainWindow* createSurveillanceWindow();
 };
+
 #endif // MAINWINDOW_H

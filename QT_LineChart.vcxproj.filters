@@ -75,13 +75,13 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="mainwindow.h">
-      <Filter>Header Files\UI</Filter>
-    </QtMoc>
     <QtMoc Include="multipleViewsWindow.h">
       <Filter>Header Files\UI</Filter>
     </QtMoc>
     <QtMoc Include="SearchableTableWidget.h">
+      <Filter>Header Files\UI</Filter>
+    </QtMoc>
+    <QtMoc Include="mainwindow.h">
       <Filter>Header Files\UI</Filter>
     </QtMoc>
   </ItemGroup>
