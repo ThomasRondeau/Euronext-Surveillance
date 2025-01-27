@@ -190,6 +190,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mainwindow.cpp" />
     <ClCompile Include="multipleViewsWindow.cpp" />
+    <ClCompile Include="SearchableTableWidget.cpp" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="mainwindow.h" />
@@ -215,6 +216,9 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="multipleViewsWindow.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="SearchableTableWidget.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <Import Project="$(QtMsBuild)\qt.targets" Condition="Exists('$(QtMsBuild)\qt.targets')" />

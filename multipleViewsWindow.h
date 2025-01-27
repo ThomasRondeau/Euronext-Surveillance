@@ -28,22 +28,29 @@ private slots:
     void changePage(int index);
 
 private:
+    void createSideMenu();
+    void createPages();
+
+    void createPriceChart();
+	void createOrderBookDisplay();
+
+    // Basic main window components
     QWidget* centralWidget;
     QHBoxLayout* mainLayout;
     QWidget* sideMenu;
     QVBoxLayout* menuLayout;
     QStackedWidget* stackedWidget;
 
-    // Graphic components -- TODO
+	// price chart components
     QChart* m_priceChart;
     QLineSeries* m_priceSeries;
     QChartView* m_chartView;
 
+	// Order book component
+    QTableWidget* m_orderBookTable;
 
-    void createSideMenu();
-    void createPages();
+	//Raw data component
 
-    void createPriceChart();
 };
 
 #endif

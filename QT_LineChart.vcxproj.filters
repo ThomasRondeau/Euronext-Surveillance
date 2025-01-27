@@ -70,12 +70,18 @@
     <ClCompile Include="multipleViewsWindow.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
+    <ClCompile Include="SearchableTableWidget.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="mainwindow.h">
       <Filter>Header Files\UI</Filter>
     </QtMoc>
     <QtMoc Include="multipleViewsWindow.h">
+      <Filter>Header Files\UI</Filter>
+    </QtMoc>
+    <QtMoc Include="SearchableTableWidget.h">
       <Filter>Header Files\UI</Filter>
     </QtMoc>
   </ItemGroup>

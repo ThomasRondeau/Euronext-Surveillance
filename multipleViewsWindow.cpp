@@ -1,14 +1,23 @@
 #include "multipleViewsWindow.h"
+#include "searchableTableWidget.h"
 
 // creation of the window
 MultipleViewsWindow::MultipleViewsWindow(QWidget* parent)
-    : QMainWindow(parent)
+    : QMainWindow(parent), 
+    m_priceChart(new QChart()),
+    m_priceSeries(new QLineSeries()),
+    m_chartView(new QChartView(m_priceChart)),
+	m_orderBookTable(new QTableWidget(10, 4, this))
 {
     centralWidget = new QWidget(this);
     setCentralWidget(centralWidget);
 
     mainLayout = new QHBoxLayout(centralWidget);
 
+    //Test, to refactor
+	createPriceChart();
+    createOrderBookDisplay();
+    
     createSideMenu();
 
     stackedWidget = new QStackedWidget;
@@ -18,6 +27,11 @@ MultipleViewsWindow::MultipleViewsWindow(QWidget* parent)
     mainLayout->addWidget(stackedWidget);
 
     setMinimumSize(1280, 720);
+}
+
+//Destructor
+MultipleViewsWindow::~MultipleViewsWindow()
+{
 }
 
 // creation of the side menu to switch between pages
@@ -54,15 +68,19 @@ void MultipleViewsWindow::createPages()
     QWidget* page2 = new QWidget;
     QWidget* page3 = new QWidget;
 
-	//Add a label to each page to describe what they do
+	//Page 1 : executed data
     QVBoxLayout* layout1 = new QVBoxLayout(page1);
     layout1->addWidget(new QLabel("Chart on executed data"));
+	layout1->addWidget(m_chartView);
 
     QVBoxLayout* layout2 = new QVBoxLayout(page2);
     layout2->addWidget(new QLabel("Chart on pretrade data"));
+	layout2->addWidget(m_orderBookTable);
 
+    SearchableTableWidget* searchTable = new SearchableTableWidget(this);
     QVBoxLayout* layout3 = new QVBoxLayout(page3);
     layout3->addWidget(new QLabel("Raw data search"));
+	layout3->addWidget(searchTable);
 
 	//Add the pages to the stacked widget
     stackedWidget->addWidget(page1);
@@ -76,12 +94,7 @@ void MultipleViewsWindow::changePage(int index)
     stackedWidget->setCurrentIndex(index);
 }
 
-MultipleViewsWindow::~MultipleViewsWindow()
-{
-}
-
-// To add the same chart as in the mainwindow view
-
+// Create the price chart
 void MultipleViewsWindow::createPriceChart()
 {
     m_priceSeries->setName("Price");
@@ -91,4 +104,12 @@ void MultipleViewsWindow::createPriceChart()
     m_priceChart->setTitle("Price Evolution");
 
     m_chartView->setRenderHint(QPainter::Antialiasing);
+}
+
+// Create the order book display
+void MultipleViewsWindow::createOrderBookDisplay()
+{
+    m_orderBookTable->setHorizontalHeaderLabels({
+        "Bid Size", "Bid Price", "Ask Price", "Ask Size"
+    });
 }
