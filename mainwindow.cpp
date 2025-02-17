@@ -2,6 +2,7 @@
 #include <QPushButton>
 #include <QVBoxLayout>
 #include <QWidget>
+#include <QTimer>
 #include "multipleViewsWindow.h"
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
@@ -43,21 +44,18 @@ void MainWindow::openNewWindow(WindowType type) {
 void MainWindow::closeAndTransferOwnership(QMainWindow* newWindow) {
     if (!newWindow) return;
 
-    // Configure la nouvelle fenêtre
     newWindow->setAttribute(Qt::WA_DeleteOnClose);
-
-    // transferData(newWindow);
 
     connect(newWindow, &QMainWindow::destroyed, this, &MainWindow::onNewWindowDestroyed);
 
     newWindow->show();
-    this->close();
+
+    // Utiliser un QTimer pour différer la fermeture de la fenêtre principale
+    QTimer::singleShot(0, this, &MainWindow::close);
 }
 
 void MainWindow::onNewWindowDestroyed() {
-    // Logique à exécuter quand la nouvelle fenêtre est fermée
     this->show();
-    // Autres actions de nettoyage si nécessaire
 }
 
 QMainWindow* MainWindow::createSurveillanceWindow() {
@@ -65,6 +63,5 @@ QMainWindow* MainWindow::createSurveillanceWindow() {
 }
 
 QMainWindow* MainWindow::createListingWindow() {
-    // Implémentez la création de la fenêtre de listing
     return nullptr;
 }
