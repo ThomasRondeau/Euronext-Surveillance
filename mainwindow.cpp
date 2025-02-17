@@ -8,6 +8,21 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     setWindowTitle("Fenêtre Principale");
     resize(1280, 720);
 
+    setupUI();
+}
+
+MainWindow::~MainWindow() {
+
+}
+
+// ✅ Montre la fenêtre principale après le login
+void MainWindow::showMainWindow() {
+    MainWindow *mainWin = new MainWindow();
+    mainWin->show();
+}
+
+// ✅ UI setup pour la fenêtre principale
+void MainWindow::setupUI() {
     QWidget* centralWidget = new QWidget(this);
     setCentralWidget(centralWidget);
     QVBoxLayout* layout = new QVBoxLayout(centralWidget);
@@ -15,10 +30,9 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     QPushButton* button = new QPushButton("Ouvrir une nouvelle fenêtre", this);
     layout->addWidget(button);
 
-    connect(button, &QPushButton::clicked, this, [this]() { openNewWindow(WindowType::SURVEILLANCE); });
-}
-
-MainWindow::~MainWindow() {
+    connect(button, &QPushButton::clicked, this, [this]() {
+        openNewWindow(WindowType::SURVEILLANCE);
+    });
 }
 
 void MainWindow::openNewWindow(WindowType type) {
@@ -36,17 +50,17 @@ void MainWindow::openNewWindow(WindowType type) {
     }
 
     if (newWindow) {
-        closeAndTransferOwnership(newWindow);
+        newWindow->setAttribute(Qt::WA_DeleteOnClose);
+        newWindow->show();
     }
 }
+
 
 void MainWindow::closeAndTransferOwnership(QMainWindow* newWindow) {
     if (!newWindow) return;
 
     // Configure la nouvelle fenêtre
     newWindow->setAttribute(Qt::WA_DeleteOnClose);
-
-    // transferData(newWindow);
 
     connect(newWindow, &QMainWindow::destroyed, this, &MainWindow::onNewWindowDestroyed);
 
@@ -55,9 +69,8 @@ void MainWindow::closeAndTransferOwnership(QMainWindow* newWindow) {
 }
 
 void MainWindow::onNewWindowDestroyed() {
-    // Logique à exécuter quand la nouvelle fenêtre est fermée
+    // Logique exécutée quand la nouvelle fenêtre est fermée
     this->show();
-    // Autres actions de nettoyage si nécessaire
 }
 
 QMainWindow* MainWindow::createSurveillanceWindow() {
@@ -65,6 +78,5 @@ QMainWindow* MainWindow::createSurveillanceWindow() {
 }
 
 QMainWindow* MainWindow::createListingWindow() {
-    // Implémentez la création de la fenêtre de listing
     return nullptr;
 }

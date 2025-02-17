@@ -6,6 +6,7 @@
 class QPushButton;
 class QVBoxLayout;
 class QWidget;
+class LoginWindow;
 
 enum class WindowType {
     LISTING,
@@ -16,15 +17,18 @@ class MainWindow : public QMainWindow {
     Q_OBJECT
 
 public:
-    MainWindow(QWidget* parent = nullptr);
+    explicit MainWindow(QWidget* parent = nullptr);
     ~MainWindow();
-    void openNewWindow(WindowType type);
+
+    static void showMainWindow();  // Ouvre la fenêtre principale après le login
+    void openNewWindow(WindowType type); // Garde la gestion des autres fenêtres
 
 private slots:
     void closeAndTransferOwnership(QMainWindow* newWindow);
-    void onNewWindowDestroyed();  // Nouveau slot dédié
+    void onNewWindowDestroyed();
 
 private:
+    void setupUI();
     QMainWindow* createListingWindow();
     QMainWindow* createSurveillanceWindow();
 };

@@ -1,19 +1,45 @@
-QT += core gui widgets charts
+QT += core gui widgets charts network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++17
 
-# You can make your code fail to compile if it uses deprecated APIs.
-# In order to do so, uncomment the following line.
-#DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
+INCLUDEPATH += $$PWD/include
 
+
+#Lien vers lib Json nécéssaire aux appels de l'API, ici path pour mac
+INCLUDEPATH += /opt/homebrew/Cellar/jsoncpp/1.9.6/include
+LIBS += -L/opt/homebrew/Cellar/jsoncpp/1.9.6/lib -ljsoncpp
+
+#Lien vers lib curl nécéssaire aux appels de l'API, ici path pour mac
+INCLUDEPATH += /opt/homebrew/opt/curl/include
+LIBS += -L/opt/homebrew/opt/curl/lib -lcurl
+
+
+# Include all .cpp files from the src folder
 SOURCES += \
+    SearchableTableWidget.cpp \
+    adminwindow.cpp \
+    dataanalystwindow.cpp \
+    instrumentmanagerwindow.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    loginwindow.cpp \
+    APIManager.cpp \
+    multipleViewsWindow.cpp \
+    traderwindow.cpp
 
+# Include all .h files from the include folder
 HEADERS += \
-    mainwindow.h
+    SearchableTableWidget.h \
+    adminwindow.h \
+    dataanalystwindow.h \
+    instrumentmanagerwindow.h \
+    mainwindow.h \
+    loginwindow.h \
+    APIManager.h \
+    multipleViewsWindow.h \
+    traderwindow.h
 
 FORMS += \
     mainwindow.ui
