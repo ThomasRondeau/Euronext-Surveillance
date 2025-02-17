@@ -187,10 +187,17 @@
     </QtUic>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CeilingProcessor.cpp" />
+    <ClCompile Include="FloorProcessor.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mainwindow.cpp" />
     <ClCompile Include="multipleViewsWindow.cpp" />
+    <ClCompile Include="PumpDumpProcessor.cpp" />
+    <ClCompile Include="QuoteProcessor.cpp" />
     <ClCompile Include="SearchableTableWidget.cpp" />
+    <ClCompile Include="SpoofingProcessor.cpp" />
+    <ClCompile Include="WashProcessor.cpp" />
+    <ClCompile Include="WashProcessor.h" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="mainwindow.h" />
@@ -219,6 +226,18 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="SearchableTableWidget.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="orders.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CeilingProcessor.h" />
+    <ClInclude Include="FloorProcessor.h" />
+    <ClInclude Include="order.h" />
+    <ClInclude Include="Processor.h" />
+    <ClInclude Include="PumpDumpProcessor.h" />
+    <ClInclude Include="QuoteProcessor.h" />
+    <ClInclude Include="SpoofingProcessor.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <Import Project="$(QtMsBuild)\qt.targets" Condition="Exists('$(QtMsBuild)\qt.targets')" />
