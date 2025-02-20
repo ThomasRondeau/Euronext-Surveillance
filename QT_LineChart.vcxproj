@@ -187,10 +187,12 @@
     </QtUic>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AlertObserver.cpp" />
     <ClCompile Include="CeilingProcessor.cpp" />
+    <ClCompile Include="DbConnector.cpp" />
     <ClCompile Include="FloorProcessor.cpp" />
+    <ClCompile Include="FraudMonitor.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="mainwindow.cpp" />
     <ClCompile Include="multipleViewsWindow.cpp" />
     <ClCompile Include="PumpDumpProcessor.cpp" />
     <ClCompile Include="QuoteProcessor.cpp" />
@@ -198,9 +200,6 @@
     <ClCompile Include="SpoofingProcessor.cpp" />
     <ClCompile Include="WashProcessor.cpp" />
     <ClCompile Include="WashProcessor.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <QtMoc Include="mainwindow.h" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="debug\moc_predefs.h.cbt">
@@ -229,17 +228,30 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="orders.json" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Alert.h" />
+    <ClInclude Include="AlertObserver.h" />
     <ClInclude Include="CeilingProcessor.h" />
+    <ClInclude Include="DbConnector.h" />
     <ClInclude Include="FloorProcessor.h" />
+    <ClInclude Include="IFraudObserver.h" />
     <ClInclude Include="order.h" />
-    <ClInclude Include="Processor.h" />
+    <ClInclude Include="IProcessor.h" />
     <ClInclude Include="PumpDumpProcessor.h" />
     <ClInclude Include="QuoteProcessor.h" />
     <ClInclude Include="SpoofingProcessor.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <Import Project="$(QtMsBuild)\qt.targets" Condition="Exists('$(QtMsBuild)\qt.targets')" />
-  <ImportGroup Label="ExtensionTargets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="packages\nlohmann.json.3.11.3\build\native\nlohmann.json.targets" Condition="Exists('packages\nlohmann.json.3.11.3\build\native\nlohmann.json.targets')" />
+  </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Ce projet fait référence à des packages NuGet qui sont manquants sur cet ordinateur. Utilisez l'option de restauration des packages NuGet pour les télécharger. Pour plus d'informations, consultez http://go.microsoft.com/fwlink/?LinkID=322105. Le fichier manquant est : {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\nlohmann.json.3.11.3\build\native\nlohmann.json.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\nlohmann.json.3.11.3\build\native\nlohmann.json.targets'))" />
+  </Target>
 </Project>

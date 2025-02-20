@@ -61,7 +61,6 @@ private:
 	time_t expiration;
 
 public:
-	// Constructor
 	Order(int id, int priority, double price, int quantity, timeInForce tif, orderType ot, side s, int idInstrument, 
        int originalQuantity, int idFirm, double stopPrice, double limitPrice, status st, time_t timestampCreated, 
        time_t timestampExecuted, int remainingQuantity, double totalValue, instrumentType it, double commission, 
@@ -72,7 +71,6 @@ public:
     _remainingQuantity(remainingQuantity), _totalvalue(totalValue), _instrumentType(it), _commission(commission), 
     _marketId(marketId), _origin(origin), expiration(exp) {}
 
-	// Getters
 	int getId() const { return _id; }
 	int getPriority() const { return _priority; }
 	double getPrice() const { return _price; }
@@ -97,7 +95,6 @@ public:
 	time_t getExpiration() const { return expiration; }
 
 	// Setters
-	void setId(int id) { _id = id; }
 	void setPriority(int priority) { _priority = priority; }
 	void setPrice(double price) { _price = price; }
 	void setQuantity(int quantity) { _quantity = quantity; }
@@ -117,6 +114,5 @@ public:
 	void setInstrumentType(instrumentType it) { _instrumentType = it; }
 	void setCommission(double commission) { _commission = commission; }
 	void setMarketId(const std::string& marketId) { _marketId = marketId; }
-	void setOrigin(const std::string& origin) { _origin = origin; }
 	void setExpiration(time_t exp) { expiration = exp; }
 };

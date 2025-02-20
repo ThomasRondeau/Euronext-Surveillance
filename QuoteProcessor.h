@@ -1,8 +1,8 @@
 #pragma once
 #include "order.h"
-#include "Processor.h"
+#include "IProcessor.h"
 
-class QuoteProcessor : public Processor {
+class QuoteProcessor : public IProcessor {
 public:
-	void process(Order* order) override;
+	std::optional<Alert> process(const Order& order) override;
 };

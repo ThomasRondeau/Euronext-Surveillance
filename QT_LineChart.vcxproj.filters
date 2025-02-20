@@ -59,13 +59,16 @@
     <Filter Include="Source Files\Processors">
       <UniqueIdentifier>{c9f6a3d9-4756-4c9b-a5bf-c9321fde805c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Observers">
+      <UniqueIdentifier>{f469f681-aa90-4db2-a8e5-9e62abb17cc8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Observers">
+      <UniqueIdentifier>{6aeaa030-f230-4e84-ba11-a23f1844482b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="mainwindow.cpp">
-      <Filter>Source Files\UI</Filter>
     </ClCompile>
     <ClCompile Include="multipleViewsWindow.cpp">
       <Filter>Source Files\UI</Filter>
@@ -73,15 +76,42 @@
     <ClCompile Include="SearchableTableWidget.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
+    <ClCompile Include="WashProcessor.h">
+      <Filter>Header Files\Processors</Filter>
+    </ClCompile>
+    <ClCompile Include="PumpDumpProcessor.cpp">
+      <Filter>Source Files\Processors</Filter>
+    </ClCompile>
+    <ClCompile Include="QuoteProcessor.cpp">
+      <Filter>Source Files\Processors</Filter>
+    </ClCompile>
+    <ClCompile Include="SpoofingProcessor.cpp">
+      <Filter>Source Files\Processors</Filter>
+    </ClCompile>
+    <ClCompile Include="WashProcessor.cpp">
+      <Filter>Source Files\Processors</Filter>
+    </ClCompile>
+    <ClCompile Include="FloorProcessor.cpp">
+      <Filter>Source Files\Processors</Filter>
+    </ClCompile>
+    <ClCompile Include="CeilingProcessor.cpp">
+      <Filter>Source Files\Processors</Filter>
+    </ClCompile>
+    <ClCompile Include="DbConnector.cpp">
+      <Filter>Source Files\Connectors</Filter>
+    </ClCompile>
+    <ClCompile Include="AlertObserver.cpp">
+      <Filter>Source Files\Observers</Filter>
+    </ClCompile>
+    <ClCompile Include="FraudMonitor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="multipleViewsWindow.h">
       <Filter>Header Files\UI</Filter>
     </QtMoc>
     <QtMoc Include="SearchableTableWidget.h">
-      <Filter>Header Files\UI</Filter>
-    </QtMoc>
-    <QtMoc Include="mainwindow.h">
       <Filter>Header Files\UI</Filter>
     </QtMoc>
   </ItemGroup>
@@ -97,5 +127,44 @@
     <QtUic Include="mainwindow.ui">
       <Filter>Form Files</Filter>
     </QtUic>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="SpoofingProcessor.h">
+      <Filter>Header Files\Processors</Filter>
+    </ClInclude>
+    <ClInclude Include="QuoteProcessor.h">
+      <Filter>Header Files\Processors</Filter>
+    </ClInclude>
+    <ClInclude Include="PumpDumpProcessor.h">
+      <Filter>Header Files\Processors</Filter>
+    </ClInclude>
+    <ClInclude Include="IProcessor.h">
+      <Filter>Header Files\Processors</Filter>
+    </ClInclude>
+    <ClInclude Include="CeilingProcessor.h">
+      <Filter>Header Files\Processors</Filter>
+    </ClInclude>
+    <ClInclude Include="FloorProcessor.h">
+      <Filter>Header Files\Processors</Filter>
+    </ClInclude>
+    <ClInclude Include="order.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DbConnector.h">
+      <Filter>Header Files\Connectors</Filter>
+    </ClInclude>
+    <ClInclude Include="Alert.h">
+      <Filter>Header Files\Processors</Filter>
+    </ClInclude>
+    <ClInclude Include="IFraudObserver.h">
+      <Filter>Header Files\Observers</Filter>
+    </ClInclude>
+    <ClInclude Include="AlertObserver.h">
+      <Filter>Header Files\Observers</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="orders.json" />
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>
