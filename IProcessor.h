@@ -5,7 +5,17 @@
 
 class IProcessor {
 public:
-	virtual std::optional<Alert> process(const Order& order) = 0;
+    IProcessor() : _id(getNextId()) {}
+
+    virtual std::optional<Alert> process(const Order& order) = 0;
+
+    int getId() const { return _id; }
+
 private:
-	int _id;
+    const int _id;
+
+    static int getNextId() {
+        static int nextId{ 0 };
+        return nextId++;
+    }
 };

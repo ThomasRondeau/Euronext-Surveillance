@@ -9,8 +9,11 @@ public:
 	std::optional<Alert> process(const Order& order) override;
 
 private:
+	time_t window;
 	double ceilingPriceHistoric;
 	double ceilingVolumeHistoric;
 	double priceMargin;
+	double percentageVolumeThreshlod;
 	std::vector<Order> suspiciousOrders;
+	std::vector<Order> historicOrders;
 };
