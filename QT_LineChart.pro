@@ -19,8 +19,8 @@ LIBS += -L/opt/homebrew/opt/curl/lib -lcurl
 # Include all .cpp files from the src folder
 SOURCES += \
     SearchableTableWidget.cpp \
+    Surveillancewindow.cpp \
     adminwindow.cpp \
-    dataanalystwindow.cpp \
     instrumentmanagerwindow.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -32,8 +32,8 @@ SOURCES += \
 # Include all .h files from the include folder
 HEADERS += \
     SearchableTableWidget.h \
+    Surveillancewindow.h \
     adminwindow.h \
-    dataanalystwindow.h \
     instrumentmanagerwindow.h \
     mainwindow.h \
     loginwindow.h \

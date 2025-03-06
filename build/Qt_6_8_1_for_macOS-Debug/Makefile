@@ -53,8 +53,8 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = ../../SearchableTableWidget.cpp \
+		../../Surveillancewindow.cpp \
 		../../adminwindow.cpp \
-		../../dataanalystwindow.cpp \
 		../../instrumentmanagerwindow.cpp \
 		../../main.cpp \
 		../../mainwindow.cpp \
@@ -62,16 +62,16 @@ SOURCES       = ../../SearchableTableWidget.cpp \
 		../../APIManager.cpp \
 		../../multipleViewsWindow.cpp \
 		../../traderwindow.cpp moc_SearchableTableWidget.cpp \
+		moc_Surveillancewindow.cpp \
 		moc_adminwindow.cpp \
-		moc_dataanalystwindow.cpp \
 		moc_instrumentmanagerwindow.cpp \
 		moc_mainwindow.cpp \
 		moc_loginwindow.cpp \
 		moc_multipleViewsWindow.cpp \
 		moc_traderwindow.cpp
 OBJECTS       = SearchableTableWidget.o \
+		Surveillancewindow.o \
 		adminwindow.o \
-		dataanalystwindow.o \
 		instrumentmanagerwindow.o \
 		main.o \
 		mainwindow.o \
@@ -80,8 +80,8 @@ OBJECTS       = SearchableTableWidget.o \
 		multipleViewsWindow.o \
 		traderwindow.o \
 		moc_SearchableTableWidget.o \
+		moc_Surveillancewindow.o \
 		moc_adminwindow.o \
-		moc_dataanalystwindow.o \
 		moc_instrumentmanagerwindow.o \
 		moc_mainwindow.o \
 		moc_loginwindow.o \
@@ -332,16 +332,16 @@ DIST          = /Users/mayeulboucher/Qt/6.8.1/macos/mkspecs/features/spec_pre.pr
 		/Users/mayeulboucher/Qt/6.8.1/macos/mkspecs/features/yacc.prf \
 		/Users/mayeulboucher/Qt/6.8.1/macos/mkspecs/features/lex.prf \
 		../../../../QT_LineChart.pro ../../SearchableTableWidget.h \
+		../../Surveillancewindow.h \
 		../../adminwindow.h \
-		../../dataanalystwindow.h \
 		../../instrumentmanagerwindow.h \
 		../../mainwindow.h \
 		../../loginwindow.h \
 		../../APIManager.h \
 		../../multipleViewsWindow.h \
 		../../traderwindow.h ../../SearchableTableWidget.cpp \
+		../../Surveillancewindow.cpp \
 		../../adminwindow.cpp \
-		../../dataanalystwindow.cpp \
 		../../instrumentmanagerwindow.cpp \
 		../../main.cpp \
 		../../mainwindow.cpp \
@@ -902,8 +902,8 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../../SearchableTableWidget.h ../../adminwindow.h ../../dataanalystwindow.h ../../instrumentmanagerwindow.h ../../mainwindow.h ../../loginwindow.h ../../APIManager.h ../../multipleViewsWindow.h ../../traderwindow.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../../SearchableTableWidget.cpp ../../adminwindow.cpp ../../dataanalystwindow.cpp ../../instrumentmanagerwindow.cpp ../../main.cpp ../../mainwindow.cpp ../../loginwindow.cpp ../../APIManager.cpp ../../multipleViewsWindow.cpp ../../traderwindow.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../../SearchableTableWidget.h ../../Surveillancewindow.h ../../adminwindow.h ../../instrumentmanagerwindow.h ../../mainwindow.h ../../loginwindow.h ../../APIManager.h ../../multipleViewsWindow.h ../../traderwindow.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../../SearchableTableWidget.cpp ../../Surveillancewindow.cpp ../../adminwindow.cpp ../../instrumentmanagerwindow.cpp ../../main.cpp ../../mainwindow.cpp ../../loginwindow.cpp ../../APIManager.cpp ../../multipleViewsWindow.cpp ../../traderwindow.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../../mainwindow.ui $(DISTDIR)/
 
 
@@ -932,9 +932,9 @@ benchmark: first
 
 compiler_rcc_make_all:
 compiler_rcc_clean:
-compiler_moc_header_make_all: moc_SearchableTableWidget.cpp moc_adminwindow.cpp moc_dataanalystwindow.cpp moc_instrumentmanagerwindow.cpp moc_mainwindow.cpp moc_loginwindow.cpp moc_multipleViewsWindow.cpp moc_traderwindow.cpp
+compiler_moc_header_make_all: moc_SearchableTableWidget.cpp moc_Surveillancewindow.cpp moc_adminwindow.cpp moc_instrumentmanagerwindow.cpp moc_mainwindow.cpp moc_loginwindow.cpp moc_multipleViewsWindow.cpp moc_traderwindow.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_SearchableTableWidget.cpp moc_adminwindow.cpp moc_dataanalystwindow.cpp moc_instrumentmanagerwindow.cpp moc_mainwindow.cpp moc_loginwindow.cpp moc_multipleViewsWindow.cpp moc_traderwindow.cpp
+	-$(DEL_FILE) moc_SearchableTableWidget.cpp moc_Surveillancewindow.cpp moc_adminwindow.cpp moc_instrumentmanagerwindow.cpp moc_mainwindow.cpp moc_loginwindow.cpp moc_multipleViewsWindow.cpp moc_traderwindow.cpp
 moc_SearchableTableWidget.cpp: ../../SearchableTableWidget.h \
 		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtWidgets.framework/Headers/QWidget \
 		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtWidgets.framework/Headers/qwidget.h \
@@ -955,17 +955,38 @@ moc_SearchableTableWidget.cpp: ../../SearchableTableWidget.h \
 		/Users/mayeulboucher/Qt/6.8.1/macos/libexec/moc
 	/Users/mayeulboucher/Qt/6.8.1/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D_MSC_VER=1940 -D_MSC_FULL_VER=194033811 -I/Users/mayeulboucher/Qt/6.8.1/macos/mkspecs/macx-clang -I/Users/mayeulboucher/Desktop/Project_Euronext/Euronext-Surveillance -I/Users/mayeulboucher/Desktop/Project_Euronext/Euronext-Surveillance/include -I/opt/homebrew/Cellar/jsoncpp/1.9.6/include -I/opt/homebrew/opt/curl/include -I/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCharts.framework/Headers -I/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtOpenGLWidgets.framework/Headers -I/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtWidgets.framework/Headers -I/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtOpenGL.framework/Headers -I/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers -I/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtNetwork.framework/Headers -I/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers -I. -I'C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\include' -I'C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\ATLMFC\include' -I'C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include' -I'C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\ucrt' -I'C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\um' -I'C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\shared' -I'C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\winrt' -I'C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\cppwinrt' -I'C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um' -F/Users/mayeulboucher/Qt/6.8.1/macos/lib ../../SearchableTableWidget.h -o moc_SearchableTableWidget.cpp
 
+moc_Surveillancewindow.cpp: ../../Surveillancewindow.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtWidgets.framework/Headers/QWidget \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtWidgets.framework/Headers/qwidget.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/libexec/moc
+	/Users/mayeulboucher/Qt/6.8.1/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D_MSC_VER=1940 -D_MSC_FULL_VER=194033811 -I/Users/mayeulboucher/Qt/6.8.1/macos/mkspecs/macx-clang -I/Users/mayeulboucher/Desktop/Project_Euronext/Euronext-Surveillance -I/Users/mayeulboucher/Desktop/Project_Euronext/Euronext-Surveillance/include -I/opt/homebrew/Cellar/jsoncpp/1.9.6/include -I/opt/homebrew/opt/curl/include -I/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCharts.framework/Headers -I/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtOpenGLWidgets.framework/Headers -I/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtWidgets.framework/Headers -I/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtOpenGL.framework/Headers -I/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers -I/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtNetwork.framework/Headers -I/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers -I. -I'C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\include' -I'C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\ATLMFC\include' -I'C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include' -I'C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\ucrt' -I'C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\um' -I'C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\shared' -I'C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\winrt' -I'C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\cppwinrt' -I'C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um' -F/Users/mayeulboucher/Qt/6.8.1/macos/lib ../../Surveillancewindow.h -o moc_Surveillancewindow.cpp
+
 moc_adminwindow.cpp: ../../adminwindow.h \
+		../../APIManager.h \
+		/opt/homebrew/opt/curl/include/curl/curl.h \
+		/opt/homebrew/opt/curl/include/curl/curlver.h \
+		/opt/homebrew/opt/curl/include/curl/system.h \
+		/opt/homebrew/opt/curl/include/curl/easy.h \
+		/opt/homebrew/opt/curl/include/curl/multi.h \
+		/opt/homebrew/opt/curl/include/curl/urlapi.h \
+		/opt/homebrew/opt/curl/include/curl/options.h \
+		/opt/homebrew/opt/curl/include/curl/header.h \
+		/opt/homebrew/opt/curl/include/curl/websockets.h \
+		/opt/homebrew/opt/curl/include/curl/mprintf.h \
+		/opt/homebrew/opt/curl/include/curl/typecheck-gcc.h \
+		/opt/homebrew/Cellar/jsoncpp/1.9.6/include/json/json.h \
+		/opt/homebrew/Cellar/jsoncpp/1.9.6/include/json/config.h \
+		/opt/homebrew/Cellar/jsoncpp/1.9.6/include/json/allocator.h \
+		/opt/homebrew/Cellar/jsoncpp/1.9.6/include/json/version.h \
+		/opt/homebrew/Cellar/jsoncpp/1.9.6/include/json/json_features.h \
+		/opt/homebrew/Cellar/jsoncpp/1.9.6/include/json/forwards.h \
+		/opt/homebrew/Cellar/jsoncpp/1.9.6/include/json/reader.h \
+		/opt/homebrew/Cellar/jsoncpp/1.9.6/include/json/value.h \
+		/opt/homebrew/Cellar/jsoncpp/1.9.6/include/json/writer.h \
 		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtWidgets.framework/Headers/QWidget \
 		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtWidgets.framework/Headers/qwidget.h \
 		/Users/mayeulboucher/Qt/6.8.1/macos/libexec/moc
 	/Users/mayeulboucher/Qt/6.8.1/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D_MSC_VER=1940 -D_MSC_FULL_VER=194033811 -I/Users/mayeulboucher/Qt/6.8.1/macos/mkspecs/macx-clang -I/Users/mayeulboucher/Desktop/Project_Euronext/Euronext-Surveillance -I/Users/mayeulboucher/Desktop/Project_Euronext/Euronext-Surveillance/include -I/opt/homebrew/Cellar/jsoncpp/1.9.6/include -I/opt/homebrew/opt/curl/include -I/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCharts.framework/Headers -I/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtOpenGLWidgets.framework/Headers -I/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtWidgets.framework/Headers -I/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtOpenGL.framework/Headers -I/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers -I/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtNetwork.framework/Headers -I/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers -I. -I'C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\include' -I'C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\ATLMFC\include' -I'C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include' -I'C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\ucrt' -I'C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\um' -I'C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\shared' -I'C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\winrt' -I'C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\cppwinrt' -I'C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um' -F/Users/mayeulboucher/Qt/6.8.1/macos/lib ../../adminwindow.h -o moc_adminwindow.cpp
-
-moc_dataanalystwindow.cpp: ../../dataanalystwindow.h \
-		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtWidgets.framework/Headers/QWidget \
-		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtWidgets.framework/Headers/qwidget.h \
-		/Users/mayeulboucher/Qt/6.8.1/macos/libexec/moc
-	/Users/mayeulboucher/Qt/6.8.1/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D_MSC_VER=1940 -D_MSC_FULL_VER=194033811 -I/Users/mayeulboucher/Qt/6.8.1/macos/mkspecs/macx-clang -I/Users/mayeulboucher/Desktop/Project_Euronext/Euronext-Surveillance -I/Users/mayeulboucher/Desktop/Project_Euronext/Euronext-Surveillance/include -I/opt/homebrew/Cellar/jsoncpp/1.9.6/include -I/opt/homebrew/opt/curl/include -I/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCharts.framework/Headers -I/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtOpenGLWidgets.framework/Headers -I/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtWidgets.framework/Headers -I/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtOpenGL.framework/Headers -I/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers -I/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtNetwork.framework/Headers -I/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers -I. -I'C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\include' -I'C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\ATLMFC\include' -I'C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include' -I'C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\ucrt' -I'C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\um' -I'C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\shared' -I'C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\winrt' -I'C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\cppwinrt' -I'C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um' -F/Users/mayeulboucher/Qt/6.8.1/macos/lib ../../dataanalystwindow.h -o moc_dataanalystwindow.cpp
 
 moc_instrumentmanagerwindow.cpp: ../../instrumentmanagerwindow.h \
 		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtWidgets.framework/Headers/QWidget \
@@ -1488,7 +1509,474 @@ compiler_clean: compiler_moc_header_clean compiler_uic_clean
 SearchableTableWidget.o: ../../SearchableTableWidget.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SearchableTableWidget.o ../../SearchableTableWidget.cpp
 
+Surveillancewindow.o: ../../Surveillancewindow.cpp ../../SurveillanceWindow.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtWidgets.framework/Headers/QWidget \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtWidgets.framework/Headers/qwidget.h \
+		../../LoginWindow.h \
+		../../APIManager.h \
+		/opt/homebrew/opt/curl/include/curl/curl.h \
+		/opt/homebrew/opt/curl/include/curl/curlver.h \
+		/opt/homebrew/opt/curl/include/curl/system.h \
+		/opt/homebrew/opt/curl/include/curl/easy.h \
+		/opt/homebrew/opt/curl/include/curl/multi.h \
+		/opt/homebrew/opt/curl/include/curl/urlapi.h \
+		/opt/homebrew/opt/curl/include/curl/options.h \
+		/opt/homebrew/opt/curl/include/curl/header.h \
+		/opt/homebrew/opt/curl/include/curl/websockets.h \
+		/opt/homebrew/opt/curl/include/curl/mprintf.h \
+		/opt/homebrew/opt/curl/include/curl/typecheck-gcc.h \
+		/opt/homebrew/Cellar/jsoncpp/1.9.6/include/json/json.h \
+		/opt/homebrew/Cellar/jsoncpp/1.9.6/include/json/config.h \
+		/opt/homebrew/Cellar/jsoncpp/1.9.6/include/json/allocator.h \
+		/opt/homebrew/Cellar/jsoncpp/1.9.6/include/json/version.h \
+		/opt/homebrew/Cellar/jsoncpp/1.9.6/include/json/json_features.h \
+		/opt/homebrew/Cellar/jsoncpp/1.9.6/include/json/forwards.h \
+		/opt/homebrew/Cellar/jsoncpp/1.9.6/include/json/reader.h \
+		/opt/homebrew/Cellar/jsoncpp/1.9.6/include/json/value.h \
+		/opt/homebrew/Cellar/jsoncpp/1.9.6/include/json/writer.h \
+		../../MultipleViewsWindow.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtWidgets.framework/Headers/QMainWindow \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtWidgets.framework/Headers/QStackedWidget \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtWidgets.framework/Headers/qstackedwidget.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtWidgets.framework/Headers/QPushButton \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtWidgets.framework/Headers/QVBoxLayout \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtWidgets.framework/Headers/qboxlayout.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtWidgets.framework/Headers/QLabel \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtWidgets.framework/Headers/qlabel.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/QtCore \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qglobal.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/q20algorithm.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/q20chrono.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/q20functional.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/q20iterator.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/q20map.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/q20memory.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/q20vector.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/q23functional.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/q23utility.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/q26numeric.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qabstractanimation.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qabstracteventdispatcher.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qabstractitemmodel.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qabstractnativeeventfilter.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qabstractproxymodel.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qalgorithms.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qanimationgroup.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qanystringview.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qapplicationstatic.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qarraydata.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qarraydataops.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qarraydatapointer.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qassert.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qassociativeiterable.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qatomic.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qatomicscopedvaluerollback.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qbasictimer.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qbindingstorage.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qbitarray.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qbuffer.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qbytearray.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qbytearrayalgorithms.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qbytearraylist.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qbytearraymatcher.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qbytearrayview.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qcache.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qcalendar.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qcborarray.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qcborcommon.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qcbormap.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qcborstream.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qcborstreamreader.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qcborstreamwriter.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qcborvalue.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qchar.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qchronotimer.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qcollator.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qcommandlineoption.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qcommandlineparser.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qcompare.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qcompilerdetection.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qconcatenatetablesproxymodel.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qconstructormacros.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qcontainerfwd.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qcontainerinfo.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qcontiguouscache.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qcoreapplication.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qcoreevent.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qcryptographichash.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qdarwinhelpers.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qdatastream.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qdatetime.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qdeadlinetimer.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qdebug.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qdir.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qdiriterator.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qdirlisting.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qeasingcurve.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qelapsedtimer.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qendian.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qeventloop.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qexception.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qexceptionhandling.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qfactoryinterface.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qfile.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qfiledevice.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qfileinfo.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qfileselector.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qfilesystemwatcher.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qflags.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qforeach.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qfunctionpointer.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qfuture.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qfutureinterface.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qfuturesynchronizer.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qfuturewatcher.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qgenericatomic.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qglobalstatic.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qhash.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qhashfunctions.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qidentityproxymodel.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qiodevice.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qiodevicebase.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qitemselectionmodel.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qiterable.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qiterator.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qjsonarray.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qjsondocument.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qjsonobject.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qjsonvalue.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qlatin1stringmatcher.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qlatin1stringview.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qlibrary.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qlibraryinfo.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qline.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qlist.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qlocale.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qlockfile.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qloggingcategory.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qmalloc.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qmap.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qmargins.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qmath.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qmessageauthenticationcode.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qmetacontainer.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qmetaobject.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qmetatype.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qmimedata.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qmimedatabase.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qmimetype.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qminmax.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qmutex.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qnamespace.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qnativeinterface.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qnumeric.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qobject.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qobjectcleanuphandler.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qobjectdefs.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qoperatingsystemversion.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qoverload.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qpair.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qparallelanimationgroup.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qpauseanimation.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qpermissions.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qplugin.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qpluginloader.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qpoint.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qpointer.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qprocess.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qprocessordetection.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qpromise.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qproperty.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qpropertyanimation.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qpropertyprivate.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qqueue.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qrandom.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qreadwritelock.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qrect.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qrefcount.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qregularexpression.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qresource.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qresultstore.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qrunnable.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qsavefile.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qscopedpointer.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qscopedvaluerollback.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qscopeguard.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qsemaphore.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qsequentialanimationgroup.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qsequentialiterable.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qset.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qsettings.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qshareddata.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qsharedmemory.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qsharedpointer.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qsignalmapper.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qsimd.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qsize.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qsocketnotifier.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qsortfilterproxymodel.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qspan.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qstack.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qstandardpaths.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qstaticlatin1stringmatcher.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qstorageinfo.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qstring.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qstringalgorithms.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qstringbuilder.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qstringconverter.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qstringfwd.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qstringlist.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qstringlistmodel.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qstringliteral.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qstringmatcher.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qstringtokenizer.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qstringview.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qswap.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qsysinfo.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qsystemdetection.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qsystemsemaphore.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qtaggedpointer.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qtclasshelpermacros.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qtconfiginclude.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qtconfigmacros.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qtcoreversion.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qtdeprecationmarkers.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qtemporarydir.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qtemporaryfile.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qtenvironmentvariables.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qtextboundaryfinder.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qtextstream.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qthread.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qthreadpool.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qthreadstorage.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qtimeline.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qtimer.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qtimezone.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qtipccommon.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qtmetamacros.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qtnoop.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qtpreprocessorsupport.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qtranslator.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qtransposeproxymodel.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qtresource.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qtsymbolmacros.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qttranslation.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qttypetraits.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qtversion.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qtversionchecks.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qtypeinfo.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qtyperevision.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qtypes.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qurl.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qurlquery.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qutf8stringview.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/quuid.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qvariant.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qvariantanimation.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qvarianthash.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qvariantlist.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qvariantmap.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qvarlengtharray.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qvector.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qversionnumber.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qwaitcondition.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qwineventnotifier.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qxmlstream.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qxpfunctional.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCore.framework/Headers/qyieldcpu.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/QtGui \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qtguiglobal.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qabstractfileiconprovider.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qabstracttextdocumentlayout.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qaccessible.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qaccessiblebridge.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qaccessibleobject.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qaccessibleplugin.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qaction.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qactiongroup.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qbackingstore.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qbitmap.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qbrush.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qclipboard.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qcolor.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qcolorspace.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qcolortransform.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qcursor.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qdesktopservices.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qdrag.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qevent.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qeventpoint.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qfilesystemmodel.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qfont.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qfontdatabase.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qfontinfo.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qfontmetrics.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qgenericmatrix.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qgenericplugin.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qgenericpluginfactory.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qglyphrun.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qguiapplication.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qicon.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qiconengine.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qiconengineplugin.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qimage.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qimageiohandler.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qimagereader.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qimagewriter.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qinputdevice.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qinputmethod.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qkeysequence.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qmatrix4x4.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qmovie.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qoffscreensurface.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qopengl.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qopenglcontext.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qopenglextrafunctions.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qopenglfunctions.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qpagedpaintdevice.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qpagelayout.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qpageranges.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qpagesize.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qpaintdevice.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qpaintdevicewindow.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qpaintengine.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qpainter.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qpainterpath.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qpalette.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qpdfoutputintent.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qpdfwriter.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qpen.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qpicture.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qpixelformat.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qpixmap.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qpixmapcache.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qpointingdevice.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qpolygon.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qquaternion.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qrasterwindow.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qrawfont.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qregion.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qrgb.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qrgba64.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qrgbafloat.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qscreen.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qsessionmanager.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qshortcut.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qstandarditemmodel.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qstatictext.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qstylehints.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qsurface.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qsurfaceformat.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qsyntaxhighlighter.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qtextcursor.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qtextdocument.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qtextdocumentfragment.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qtextdocumentwriter.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qtextformat.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qtextlayout.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qtextlist.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qtextobject.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qtextoption.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qtexttable.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qtguiversion.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qtransform.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qundogroup.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qundostack.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qutimimeconverter.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qvalidator.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qvector2d.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qvector3d.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qvector4d.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qvectornd.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qwindow.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtGui.framework/Headers/qwindowdefs.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCharts.framework/Headers/QtCharts \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCharts.framework/Headers/qchartglobal.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCharts.framework/Headers/qabstractaxis.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCharts.framework/Headers/qabstractbarseries.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCharts.framework/Headers/qabstractseries.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCharts.framework/Headers/qarealegendmarker.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCharts.framework/Headers/qareaseries.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCharts.framework/Headers/qbarcategoryaxis.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCharts.framework/Headers/qbarlegendmarker.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCharts.framework/Headers/qbarmodelmapper.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCharts.framework/Headers/qbarseries.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCharts.framework/Headers/qbarset.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCharts.framework/Headers/qboxplotlegendmarker.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCharts.framework/Headers/qboxplotmodelmapper.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCharts.framework/Headers/qboxplotseries.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCharts.framework/Headers/qboxset.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCharts.framework/Headers/qcandlesticklegendmarker.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCharts.framework/Headers/qcandlestickmodelmapper.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCharts.framework/Headers/qcandlestickseries.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCharts.framework/Headers/qcandlestickset.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCharts.framework/Headers/qcategoryaxis.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCharts.framework/Headers/qchart.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCharts.framework/Headers/qchartview.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCharts.framework/Headers/qcoloraxis.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCharts.framework/Headers/qdatetimeaxis.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCharts.framework/Headers/qhbarmodelmapper.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCharts.framework/Headers/qhboxplotmodelmapper.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCharts.framework/Headers/qhcandlestickmodelmapper.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCharts.framework/Headers/qhorizontalbarseries.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCharts.framework/Headers/qhorizontalpercentbarseries.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCharts.framework/Headers/qhorizontalstackedbarseries.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCharts.framework/Headers/qhpiemodelmapper.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCharts.framework/Headers/qhxymodelmapper.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCharts.framework/Headers/qlegend.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCharts.framework/Headers/qlegendmarker.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCharts.framework/Headers/qlineseries.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCharts.framework/Headers/qlogvalueaxis.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCharts.framework/Headers/qpercentbarseries.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCharts.framework/Headers/qpielegendmarker.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCharts.framework/Headers/qpiemodelmapper.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCharts.framework/Headers/qpieseries.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCharts.framework/Headers/qpieslice.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCharts.framework/Headers/qpolarchart.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCharts.framework/Headers/qscatterseries.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCharts.framework/Headers/qsplineseries.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCharts.framework/Headers/qstackedbarseries.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCharts.framework/Headers/qtchartsversion.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCharts.framework/Headers/qvalueaxis.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCharts.framework/Headers/qvbarmodelmapper.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCharts.framework/Headers/qvboxplotmodelmapper.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCharts.framework/Headers/qvcandlestickmodelmapper.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCharts.framework/Headers/qvpiemodelmapper.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCharts.framework/Headers/qvxymodelmapper.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCharts.framework/Headers/qxylegendmarker.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCharts.framework/Headers/qxymodelmapper.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtCharts.framework/Headers/qxyseries.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtWidgets.framework/Headers/QTableWidget \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtWidgets.framework/Headers/qtablewidget.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtWidgets.framework/Headers/QLCDNumber \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtWidgets.framework/Headers/qlcdnumber.h \
+		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtWidgets.framework/Headers/QHBoxLayout
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Surveillancewindow.o ../../Surveillancewindow.cpp
+
 adminwindow.o: ../../adminwindow.cpp ../../adminwindow.h \
+		../../APIManager.h \
+		/opt/homebrew/opt/curl/include/curl/curl.h \
+		/opt/homebrew/opt/curl/include/curl/curlver.h \
+		/opt/homebrew/opt/curl/include/curl/system.h \
+		/opt/homebrew/opt/curl/include/curl/easy.h \
+		/opt/homebrew/opt/curl/include/curl/multi.h \
+		/opt/homebrew/opt/curl/include/curl/urlapi.h \
+		/opt/homebrew/opt/curl/include/curl/options.h \
+		/opt/homebrew/opt/curl/include/curl/header.h \
+		/opt/homebrew/opt/curl/include/curl/websockets.h \
+		/opt/homebrew/opt/curl/include/curl/mprintf.h \
+		/opt/homebrew/opt/curl/include/curl/typecheck-gcc.h \
+		/opt/homebrew/Cellar/jsoncpp/1.9.6/include/json/json.h \
+		/opt/homebrew/Cellar/jsoncpp/1.9.6/include/json/config.h \
+		/opt/homebrew/Cellar/jsoncpp/1.9.6/include/json/allocator.h \
+		/opt/homebrew/Cellar/jsoncpp/1.9.6/include/json/version.h \
+		/opt/homebrew/Cellar/jsoncpp/1.9.6/include/json/json_features.h \
+		/opt/homebrew/Cellar/jsoncpp/1.9.6/include/json/forwards.h \
+		/opt/homebrew/Cellar/jsoncpp/1.9.6/include/json/reader.h \
+		/opt/homebrew/Cellar/jsoncpp/1.9.6/include/json/value.h \
+		/opt/homebrew/Cellar/jsoncpp/1.9.6/include/json/writer.h \
 		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtWidgets.framework/Headers/QWidget \
 		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtWidgets.framework/Headers/qwidget.h \
 		../../instrumentmanagerwindow.h \
@@ -1498,27 +1986,6 @@ adminwindow.o: ../../adminwindow.cpp ../../adminwindow.h \
 		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtWidgets.framework/Headers/qlineedit.h \
 		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtWidgets.framework/Headers/QPushButton \
 		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtWidgets.framework/Headers/qpushbutton.h \
-		../../APIManager.h \
-		/opt/homebrew/opt/curl/include/curl/curl.h \
-		/opt/homebrew/opt/curl/include/curl/curlver.h \
-		/opt/homebrew/opt/curl/include/curl/system.h \
-		/opt/homebrew/opt/curl/include/curl/easy.h \
-		/opt/homebrew/opt/curl/include/curl/multi.h \
-		/opt/homebrew/opt/curl/include/curl/urlapi.h \
-		/opt/homebrew/opt/curl/include/curl/options.h \
-		/opt/homebrew/opt/curl/include/curl/header.h \
-		/opt/homebrew/opt/curl/include/curl/websockets.h \
-		/opt/homebrew/opt/curl/include/curl/mprintf.h \
-		/opt/homebrew/opt/curl/include/curl/typecheck-gcc.h \
-		/opt/homebrew/Cellar/jsoncpp/1.9.6/include/json/json.h \
-		/opt/homebrew/Cellar/jsoncpp/1.9.6/include/json/config.h \
-		/opt/homebrew/Cellar/jsoncpp/1.9.6/include/json/allocator.h \
-		/opt/homebrew/Cellar/jsoncpp/1.9.6/include/json/version.h \
-		/opt/homebrew/Cellar/jsoncpp/1.9.6/include/json/json_features.h \
-		/opt/homebrew/Cellar/jsoncpp/1.9.6/include/json/forwards.h \
-		/opt/homebrew/Cellar/jsoncpp/1.9.6/include/json/reader.h \
-		/opt/homebrew/Cellar/jsoncpp/1.9.6/include/json/value.h \
-		/opt/homebrew/Cellar/jsoncpp/1.9.6/include/json/writer.h \
 		../../loginwindow.h \
 		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtWidgets.framework/Headers/QVBoxLayout \
 		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtWidgets.framework/Headers/qboxlayout.h \
@@ -1526,40 +1993,6 @@ adminwindow.o: ../../adminwindow.cpp ../../adminwindow.h \
 		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtWidgets.framework/Headers/QLabel \
 		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtWidgets.framework/Headers/qlabel.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o adminwindow.o ../../adminwindow.cpp
-
-dataanalystwindow.o: ../../dataanalystwindow.cpp ../../dataanalystwindow.h \
-		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtWidgets.framework/Headers/QWidget \
-		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtWidgets.framework/Headers/qwidget.h \
-		../../loginwindow.h \
-		../../APIManager.h \
-		/opt/homebrew/opt/curl/include/curl/curl.h \
-		/opt/homebrew/opt/curl/include/curl/curlver.h \
-		/opt/homebrew/opt/curl/include/curl/system.h \
-		/opt/homebrew/opt/curl/include/curl/easy.h \
-		/opt/homebrew/opt/curl/include/curl/multi.h \
-		/opt/homebrew/opt/curl/include/curl/urlapi.h \
-		/opt/homebrew/opt/curl/include/curl/options.h \
-		/opt/homebrew/opt/curl/include/curl/header.h \
-		/opt/homebrew/opt/curl/include/curl/websockets.h \
-		/opt/homebrew/opt/curl/include/curl/mprintf.h \
-		/opt/homebrew/opt/curl/include/curl/typecheck-gcc.h \
-		/opt/homebrew/Cellar/jsoncpp/1.9.6/include/json/json.h \
-		/opt/homebrew/Cellar/jsoncpp/1.9.6/include/json/config.h \
-		/opt/homebrew/Cellar/jsoncpp/1.9.6/include/json/allocator.h \
-		/opt/homebrew/Cellar/jsoncpp/1.9.6/include/json/version.h \
-		/opt/homebrew/Cellar/jsoncpp/1.9.6/include/json/json_features.h \
-		/opt/homebrew/Cellar/jsoncpp/1.9.6/include/json/forwards.h \
-		/opt/homebrew/Cellar/jsoncpp/1.9.6/include/json/reader.h \
-		/opt/homebrew/Cellar/jsoncpp/1.9.6/include/json/value.h \
-		/opt/homebrew/Cellar/jsoncpp/1.9.6/include/json/writer.h \
-		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtWidgets.framework/Headers/QVBoxLayout \
-		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtWidgets.framework/Headers/qboxlayout.h \
-		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtWidgets.framework/Headers/QHBoxLayout \
-		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtWidgets.framework/Headers/QPushButton \
-		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtWidgets.framework/Headers/qpushbutton.h \
-		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtWidgets.framework/Headers/QLabel \
-		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtWidgets.framework/Headers/qlabel.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dataanalystwindow.o ../../dataanalystwindow.cpp
 
 instrumentmanagerwindow.o: ../../instrumentmanagerwindow.cpp ../../instrumentmanagerwindow.h \
 		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtWidgets.framework/Headers/QWidget \
@@ -2078,7 +2511,7 @@ loginwindow.o: ../../loginwindow.cpp ../../loginwindow.h \
 		/opt/homebrew/Cellar/jsoncpp/1.9.6/include/json/writer.h \
 		../../adminwindow.h \
 		../../traderwindow.h \
-		../../dataanalystwindow.h \
+		../../Surveillancewindow.h \
 		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtWidgets.framework/Headers/QVBoxLayout \
 		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtWidgets.framework/Headers/qboxlayout.h \
 		/Users/mayeulboucher/Qt/6.8.1/macos/lib/QtWidgets.framework/Headers/QLineEdit \
@@ -2580,11 +3013,11 @@ traderwindow.o: ../../traderwindow.cpp ../../traderwindow.h \
 moc_SearchableTableWidget.o: moc_SearchableTableWidget.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_SearchableTableWidget.o moc_SearchableTableWidget.cpp
 
+moc_Surveillancewindow.o: moc_Surveillancewindow.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_Surveillancewindow.o moc_Surveillancewindow.cpp
+
 moc_adminwindow.o: moc_adminwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_adminwindow.o moc_adminwindow.cpp
-
-moc_dataanalystwindow.o: moc_dataanalystwindow.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_dataanalystwindow.o moc_dataanalystwindow.cpp
 
 moc_instrumentmanagerwindow.o: moc_instrumentmanagerwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_instrumentmanagerwindow.o moc_instrumentmanagerwindow.cpp

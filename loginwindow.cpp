@@ -1,7 +1,7 @@
 #include "loginwindow.h"
 #include "adminwindow.h"
 #include "traderwindow.h"
-#include "dataanalystwindow.h"
+#include "Surveillancewindow.h"
 #include "APIManager.h"
 
 #include <QVBoxLayout>
@@ -62,9 +62,9 @@ void LoginWindow::attemptLogin() {
             hide();
             TraderWindow* traderWindow = new TraderWindow();  // We shall later add Pass APIManager
             traderWindow->show();
-        } else if (role == "DataAnalyst") {
+        } else if (role == "Surveillance") {
             hide();
-            DataAnalystWindow* analystWindow = new DataAnalystWindow();  // same here for Pass APIManager
+            SurveillanceWindow* analystWindow = new SurveillanceWindow();  // same here for Pass APIManager
             analystWindow->show();
         } else {
             errorLabel->setText("Erreur: Rôle utilisateur inconnu.");

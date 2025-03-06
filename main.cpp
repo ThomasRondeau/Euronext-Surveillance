@@ -6,7 +6,7 @@ int main(int argc, char *argv[]) {
     QApplication app(argc, argv);
 
     // Initialise APIManager avec l'URL de l'API (modifie si nécessaire)
-    APIManager apiManager("http://localhost:18080");
+    APIManager apiManager("0.0.0.0:18080");
 
     // Passe APIManager au LoginWindow
     LoginWindow loginWindow(&apiManager);
