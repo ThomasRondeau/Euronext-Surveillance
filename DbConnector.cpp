@@ -71,7 +71,7 @@ time_t stringToTimestamp(const std::string& str) {
     return std::mktime(&tm);
 }
 
-Order parseOrderFromJson(const json& jsonData) {
+Order DbConnector::parseOrderFromJson(const json& jsonData) {
     try {
 
         int id = std::stoi(jsonData["_id"].get<std::string>().substr(0, 8), nullptr, 16);
