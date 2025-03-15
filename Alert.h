@@ -26,14 +26,15 @@ enum class FraudType {
 
 class Alert {
 public:
-	Alert(int orderId, int processorId, FraudType fraudType, AlertSeverity severity, AlertType type, const string& description)
+	Alert(int orderId, int processorId, FraudType fraudType, AlertSeverity severity, AlertType type, const string& description, const time_t& timestamp)
 		: _id(getNextId()),
 		 _orderId(orderId),
 		 _processorId(processorId),
 		 _fraudType(fraudType),
 		 _severity(severity),
 		 _type(type),
-		 _description(description) {}
+		 _description(description),
+		 _timestamp(timestamp) {}
 	int getId() const { return _id; }
 	int getOrderId() const { return _orderId; }
 	int getProcessorId() const { return _processorId; }
@@ -41,6 +42,7 @@ public:
 	AlertSeverity getSeverity() const { return _severity; }
 	AlertType getType() const { return _type; }
 	string getDescription() const { return _description; }
+	time_t getTimestamp() const { return _timestamp; }
 
 private:
 	const int _id;
@@ -50,6 +52,7 @@ private:
 	AlertSeverity _severity;
 	AlertType _type;
 	std::string _description;
+	time_t _timestamp;
 
 	static int getNextId() {
 		static int nextId{ 0 };

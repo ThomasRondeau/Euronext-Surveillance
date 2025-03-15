@@ -15,6 +15,9 @@
 #include <QtCharts/QLineSeries>
 #include <QTableWidget>
 #include <QLCDNumber>
+#include <order.h>
+#include <SearchableTableWidget.h>
+#include "Alert.h"
 
 class MultipleViewsWindow : public QMainWindow
 {
@@ -23,6 +26,13 @@ class MultipleViewsWindow : public QMainWindow
 public:
     MultipleViewsWindow(QWidget* parent = nullptr);
     ~MultipleViewsWindow();
+
+	//All the methods to update the different components are in public because they need to be accessed by the observer
+    void updatePriceChart(const time_t& time, const double& price);
+    void updateOrderBook(const Order& order);
+    void updateRawData(const Order& order);
+    void addAlert(const Alert& alert);
+    void updateAlertLabelsPositions();
 
 private slots:
     void changePage(int index);
@@ -46,11 +56,14 @@ private:
     QLineSeries* m_priceSeries;
     QChartView* m_chartView;
 
+    QScatterSeries* m_alertSeries;
+    QList<QGraphicsSimpleTextItem*> m_alertLabels;
+
 	// Order book component
     QTableWidget* m_orderBookTable;
 
 	//Raw data component
-
+	SearchableTableWidget* searchTable;
 };
 
 #endif

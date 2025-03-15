@@ -5,7 +5,7 @@
 
 class WashProcessor : public IProcessor {
 public:
-	WashProcessor(double volumeHistoric) : volumeHistoric(volumeHistoric) {}
+	WashProcessor() {}
 	std::optional<Alert> process(const Order& order) override;
 
 private:

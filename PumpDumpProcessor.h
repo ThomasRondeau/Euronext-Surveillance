@@ -5,7 +5,7 @@
 
 class PumpDumpProcessor : public IProcessor {
 public:
-	PumpDumpProcessor(double volumeHistoric) : volumeHistoric(volumeHistoric) {}
+	PumpDumpProcessor() {}
 	std::optional<Alert> process(const Order& order) override;
 
 private:

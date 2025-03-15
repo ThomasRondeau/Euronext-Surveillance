@@ -162,6 +162,9 @@
     <ClInclude Include="AlertObserver.h">
       <Filter>Header Files\Observers</Filter>
     </ClInclude>
+    <ClInclude Include="ChartFraudObserver.h">
+      <Filter>Header Files\Observers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="orders.json" />

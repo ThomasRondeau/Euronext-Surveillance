@@ -9,7 +9,7 @@ public:
 
 	void processOrder(const Order& order) {
 		for (auto processor : _processors) {
-			auto alert = processor->process(order);
+			std::optional<Alert> alert = processor->process(order);
 			if (alert.has_value()) {
 				notifyObservers(alert.value());
 			}

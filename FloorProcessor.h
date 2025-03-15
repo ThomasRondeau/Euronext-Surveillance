@@ -5,7 +5,7 @@
 
 class FloorProcessor : public IProcessor {
 public:
-	FloorProcessor(double floorPriceHistoric, double floorVolumeHistoric, double priceMargin) : floorPriceHistoric(floorPriceHistoric), floorVolumeHistoric(floorVolumeHistoric), priceMargin(priceMargin) {}
+	FloorProcessor(double priceMargin) : priceMargin(priceMargin) {}
 	std::optional<Alert> process(const Order& order) override;
 
 private:

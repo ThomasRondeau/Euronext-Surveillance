@@ -24,6 +24,62 @@ public:
         setupConnections();
     }
 
+    // Méthode pour ajouter un trade
+    void addTrade(const QString& id, const QString& date, const QString& symbol,
+        int quantity, double price) {
+        if (static_cast<DataType>(dataTypeSelector->currentData().toInt()) != DataType::TRADES) {
+            dataTypeSelector->setCurrentIndex(dataTypeSelector->findData(static_cast<int>(DataType::TRADES)));
+        }
+
+        int row = table->rowCount();
+        table->insertRow(row);
+
+        table->setItem(row, 0, new QTableWidgetItem(id));
+        table->setItem(row, 1, new QTableWidgetItem(date));
+        table->setItem(row, 2, new QTableWidgetItem(symbol));
+        table->setItem(row, 3, new QTableWidgetItem(QString::number(quantity)));
+        table->setItem(row, 4, new QTableWidgetItem(QString::number(price, 'f', 2)));
+    }
+
+    // Méthode pour ajouter un ordre
+    void addOrder(const QString& id, const QString& date, const QString& symbol,
+        const QString& type, int quantity, double price) {
+        if (static_cast<DataType>(dataTypeSelector->currentData().toInt()) != DataType::ORDERS) {
+            dataTypeSelector->setCurrentIndex(dataTypeSelector->findData(static_cast<int>(DataType::ORDERS)));
+        }
+
+        int row = table->rowCount();
+        table->insertRow(row);
+
+        table->setItem(row, 0, new QTableWidgetItem(id));
+        table->setItem(row, 1, new QTableWidgetItem(date));
+        table->setItem(row, 2, new QTableWidgetItem(symbol));
+        table->setItem(row, 3, new QTableWidgetItem(type));
+        table->setItem(row, 4, new QTableWidgetItem(QString::number(quantity)));
+        table->setItem(row, 5, new QTableWidgetItem(QString::number(price, 'f', 2)));
+    }
+
+    // Méthode pour ajouter une firme
+    void addFirm(const QString& id, const QString& name, const QString& status,
+        const QString& authDate) {
+        if (static_cast<DataType>(dataTypeSelector->currentData().toInt()) != DataType::FIRMS) {
+            dataTypeSelector->setCurrentIndex(dataTypeSelector->findData(static_cast<int>(DataType::FIRMS)));
+        }
+
+        int row = table->rowCount();
+        table->insertRow(row);
+
+        table->setItem(row, 0, new QTableWidgetItem(id));
+        table->setItem(row, 1, new QTableWidgetItem(name));
+        table->setItem(row, 2, new QTableWidgetItem(status));
+        table->setItem(row, 3, new QTableWidgetItem(authDate));
+    }
+
+    // Méthode pour effacer toutes les données
+    void clearAllData() {
+        table->setRowCount(0);
+    }
+
 private:
     QTableWidget* table;
     QComboBox* dataTypeSelector;
@@ -56,14 +112,16 @@ private:
         table->clear();
         table->setColumnCount(5);
         table->setHorizontalHeaderLabels({ "ID", "Date", "Symbol", "Quantité", "Prix" });
-        setupSearchFields({ "ID", "Date", "Symbol", "Quantité", "Prix" });
+        setupSearchFields({ "ID", "Date", "Ticker", "Quantity", "Price" });
+        table->setRowCount(0);
     }
 
     void loadOrdersData() {
         table->clear();
         table->setColumnCount(6);
         table->setHorizontalHeaderLabels({ "ID", "Date", "Symbol", "Type", "Quantité", "Prix" });
-        setupSearchFields({ "ID", "Date", "Symbol", "Type", "Quantité", "Prix" });
+        setupSearchFields({ "ID", "Date", "Ticker", "Type", "Quantity", "Price" });
+        table->setRowCount(0);
     }
 
     void loadFirmsData() {
@@ -71,6 +129,7 @@ private:
         table->setColumnCount(4);
         table->setHorizontalHeaderLabels({ "ID", "Nom", "Statut", "Date d'autorisation" });
         setupSearchFields({ "ID", "Nom", "Statut", "Date d'autorisation" });
+        table->setRowCount(0);
     }
 
     void setupSearchFields(const QStringList& headers) {

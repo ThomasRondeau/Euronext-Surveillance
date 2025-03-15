@@ -5,6 +5,7 @@
 
 class SpoofingProcessor : public IProcessor {
 public:
+	SpoofingProcessor() {}
 	std::optional<Alert> process(const Order& order) override;
 
 private:

@@ -234,6 +234,7 @@
     <ClInclude Include="Alert.h" />
     <ClInclude Include="AlertObserver.h" />
     <ClInclude Include="CeilingProcessor.h" />
+    <ClInclude Include="ChartFraudObserver.h" />
     <ClInclude Include="DbConnector.h" />
     <ClInclude Include="FloorProcessor.h" />
     <ClInclude Include="IFraudObserver.h" />
