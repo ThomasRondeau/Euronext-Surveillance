@@ -110,7 +110,7 @@ std::optional<Alert> PumpDumpProcessor::process(const Order& order)
         if (avgSellTime > avgBuyTime) {
             std::string reason = "Pump and dump detected: high volume buys followed by sells with price drop";
             return Alert(order.getId(), this->getId(), FraudType::PUMP_AND_DUMP,
-                AlertSeverity::HIGH, AlertType::PRICE, reason, std::chrono::system_clock::to_time_t(std::chrono::system_clock::now()));
+                AlertSeverity::HIGH, AlertType::PRICE, reason, order.getTimestampCreated());
         }
     }
 

@@ -4,19 +4,45 @@ using json = nlohmann::json;
 
 std::vector<Order> DbConnector::getOrders(const std::string& filename)
 {
-    std::vector<Order> orders;
+    // 1. Vérification initiale du fichier
     std::ifstream file(filename);
     if (!file.is_open()) {
-        throw std::runtime_error("Cannot open json file : " + filename);
+        throw std::runtime_error("Cannot open JSON file: " + filename);
     }
 
+    // 2. Parsing du JSON avec gestion d'erreur
     json jsonData;
-    file >> jsonData;
-
-    for (const auto& orderJson : jsonData) {
-        orders.push_back(parseOrderFromJson(orderJson));
+    try {
+        file >> jsonData;
+    }
+    catch (const json::parse_error& e) {
+        file.close();
+        throw std::runtime_error("JSON parsing error: " + std::string(e.what()));
     }
 
+    // 3. Vérification si jsonData contient la clé "orders" et si c'est un tableau
+    if (!jsonData.contains("orders") || !jsonData["orders"].is_array()) {
+        file.close();
+        throw std::runtime_error("JSON data must contain an 'orders' array");
+    }
+
+    // 4. Accès au tableau "orders"
+    const auto& ordersArray = jsonData["orders"];
+
+    // 5. Optimisation : réservation de l'espace dans le vector
+    std::vector<Order> orders;
+    orders.reserve(ordersArray.size());
+
+    for (const auto& orderJson : ordersArray) {
+        try {
+            orders.push_back(parseOrderFromJson(orderJson));
+        }
+        catch (const std::exception& e) {
+            std::cerr << "Error parsing order: " << e.what() << std::endl;
+        }
+    }
+
+    file.close();
     return orders;
 }
 

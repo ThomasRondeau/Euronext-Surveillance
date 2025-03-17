@@ -5,7 +5,7 @@ std::optional<Alert> CeilingProcessor::process(const Order& order)
 {
 	historicOrders.push_back(order);
 
-	while (historicOrders.begin()->getTimestampCreated() < order.getTimestampCreated() - window) {
+	while (!historicOrders.empty() && historicOrders.begin()->getTimestampCreated() < order.getTimestampCreated() - window) {
 		historicOrders.erase(historicOrders.begin());
 	}
 	
@@ -22,7 +22,7 @@ std::optional<Alert> CeilingProcessor::process(const Order& order)
 		}
 		if ((totalQuantity/ceilingVolumeHistoric) > percentageVolumeThreshlod)
 		{
-			return Alert(order.getId(), this->getId(), FraudType::CEILING, AlertSeverity::HIGH, AlertType::VOLUME, "Ceiling scheme detected", std::chrono::system_clock::to_time_t(std::chrono::system_clock::now()));
+			return Alert(order.getId(), this->getId(), FraudType::CEILING, AlertSeverity::HIGH, AlertType::VOLUME, "Ceiling scheme detected", order.getTimestampCreated());
 		}
 	}
 

@@ -5,7 +5,7 @@
 
 class CeilingProcessor : public IProcessor{
 public:
-	CeilingProcessor(double priceMargin) : ceilingPriceHistoric(ceilingPriceHistoric), ceilingVolumeHistoric(ceilingVolumeHistoric), priceMargin(priceMargin) {}
+	CeilingProcessor(double priceMargin) : priceMargin(priceMargin) {}
 	std::optional<Alert> process(const Order& order) override;
 
 private:

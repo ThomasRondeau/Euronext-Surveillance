@@ -6,6 +6,7 @@ MultipleViewsWindow::MultipleViewsWindow(QWidget* parent)
     : QMainWindow(parent), 
     m_priceChart(new QChart()),
     m_priceSeries(new QLineSeries()),
+    m_alertSeries(new QScatterSeries()),
     m_chartView(new QChartView(m_priceChart)),
 	m_orderBookTable(new QTableWidget(10, 4, this))
 {
@@ -98,24 +99,34 @@ void MultipleViewsWindow::changePage(int index)
     stackedWidget->setCurrentIndex(index);
 }
 
-// Create the price chart
+// Create the price chart (1st view = Executed scan, should be trade data normally but actually its orders since we don't have trade data)
 void MultipleViewsWindow::createPriceChart()
 {
     m_priceSeries->setName("Price");
     m_priceChart->addSeries(m_priceSeries);
+
+    m_alertSeries->setName("Alerts");
+    m_alertSeries->setMarkerSize(10);
+    m_alertSeries->setMarkerShape(QScatterSeries::MarkerShapeCircle);
+    m_alertSeries->setColor(Qt::red);
+    m_priceChart->addSeries(m_alertSeries);
+
     m_priceChart->legend()->hide();
 
     // Special axis for time
     QDateTimeAxis* axisX = new QDateTimeAxis();
     axisX->setTickCount(5);
-	axisX->setFormat("HH:mm:ss");  //specific format for the time for precision
-	axisX->setTitleText("Time");
+    axisX->setFormat("HH:mm:ss");
+    axisX->setTitleText("Time");
 
     QValueAxis* axisY = new QValueAxis();
     axisY->setLabelFormat("%.2f");
 
+	//attach the axis to the series
     m_priceChart->setAxisX(axisX, m_priceSeries);
     m_priceChart->setAxisY(axisY, m_priceSeries);
+    m_priceChart->setAxisX(axisX, m_alertSeries);
+    m_priceChart->setAxisY(axisY, m_alertSeries);
 
     m_priceChart->setTitle("Price Evolution");
     m_chartView->setRenderHint(QPainter::Antialiasing);
@@ -132,9 +143,35 @@ void MultipleViewsWindow::createOrderBookDisplay()
 void MultipleViewsWindow::updatePriceChart(const time_t& time, const double& price)
 {
     QDateTime dateTime = QDateTime::fromSecsSinceEpoch(time);
-    m_priceSeries->append(dateTime.toMSecsSinceEpoch(), price);
+    qint64 msTimestamp = dateTime.toMSecsSinceEpoch();
 
-	// We could had a rolling window to avoid a too big chart on heavy data load
+	// Add point to the price series
+    m_priceSeries->append(msTimestamp, price);
+
+    // Adjust axes
+    m_priceChart->axes(Qt::Horizontal).first()->setRange(
+        QDateTime::fromMSecsSinceEpoch(m_priceSeries->at(0).x()),
+        QDateTime::fromMSecsSinceEpoch(m_priceSeries->at(m_priceSeries->count() - 1).x())
+    );
+
+    QValueAxis* axisY = qobject_cast<QValueAxis*>(m_priceChart->axes(Qt::Vertical).first());
+    if (axisY) {
+        double minPrice = price;
+        double maxPrice = price;
+        for (int i = 0; i < m_priceSeries->count(); ++i) {
+            double y = m_priceSeries->at(i).y();
+            if (y < minPrice) minPrice = y;
+            if (y > maxPrice) maxPrice = y;
+        }
+
+        double margin = (maxPrice - minPrice) * 0.1;
+		if (margin < 0.1) margin = 0.1; // minial margin of 0.1
+
+        axisY->setRange(minPrice - margin, maxPrice + margin);
+    }
+
+    // Refresh
+    m_chartView->update();
 }
 
 // Add an alert to the chart
@@ -159,16 +196,15 @@ void MultipleViewsWindow::addAlert(const Alert& alert)
     default:
         alertColor = QColor(255, 0, 0);   // Rouge par défaut
     }
-    // Ajouter le point d'alerte
+	// Add the alert to the alert series
 	m_alertSeries->append(msTimestamp, 0.5);  // 0.5 but we could also retrieve the orderId and put the alert at the price level of the order
 
-    // Créer et positionner le texte de l'alerte
+    // 
     QGraphicsSimpleTextItem* textItem = new QGraphicsSimpleTextItem(m_priceChart);
     textItem->setText(QString::fromStdString(alert.getDescription()));
     textItem->setBrush(alertColor);
     textItem->setFont(QFont("Arial", 9, QFont::Bold));
 
-    // Positionner le texte au-dessus du point
     QPointF pointPos = m_priceChart->mapToPosition(QPointF(msTimestamp, 0.5), m_alertSeries);
     textItem->setPos(pointPos.x() - textItem->boundingRect().width() / 2,
         pointPos.y() - 25);  // 25 pixels au-dessus du point
@@ -180,11 +216,14 @@ void MultipleViewsWindow::addAlert(const Alert& alert)
 // To change the label position when the chart receive a new point
 void MultipleViewsWindow::updateAlertLabelsPositions()
 {
+    // Security to avoid memory violation if the alert series or labels are empty
+    if (m_alertSeries == nullptr || m_alertLabels.isEmpty()) {
+        return;
+    }
     for (int i = 0; i < m_alertSeries->count() && i < m_alertLabels.size(); ++i) {
         QPointF point = m_alertSeries->at(i);
         QPointF pointPos = m_priceChart->mapToPosition(point, m_alertSeries);
-        m_alertLabels[i]->setPos(pointPos.x() - m_alertLabels[i]->boundingRect().width() / 2,
-            pointPos.y() - 25);
+        m_alertLabels[i]->setPos(pointPos.x() - m_alertLabels[i]->boundingRect().width() / 2, pointPos.y() - 25);
     }
 }
 
@@ -200,9 +239,16 @@ void MultipleViewsWindow::updateOrderBook(const Order& order)
 	}
 }
 
-/*
-void MultipleViewsWindow::updateRawData(const Order& order)
+
+void MultipleViewsWindow::updateRawDataOrder(const Order& order)
 {
-    MultipleViewsWindow::searchTable->addOrder(order);
+    MultipleViewsWindow::searchTable->addOrder(
+        QString::number(order.getId()), 
+        QDateTime::fromSecsSinceEpoch(order.getTimestampCreated()).toString("yyyy-MM-dd HH:mm:ss"), 
+        QString::fromStdString(order.getMarketId()), 
+        QString::fromStdString(order.getOrderType() == orderType::LIMIT ? "LIMIT" : "MARKET"), 
+        order.getQuantity(), 
+        order.getPrice()
+    );
 }
-*/
+

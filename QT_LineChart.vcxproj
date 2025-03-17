@@ -189,6 +189,7 @@
   <ItemGroup>
     <ClCompile Include="AlertObserver.cpp" />
     <ClCompile Include="CeilingProcessor.cpp" />
+    <ClCompile Include="ChartOrderObserver.h" />
     <ClCompile Include="DbConnector.cpp" />
     <ClCompile Include="FloorProcessor.cpp" />
     <ClCompile Include="FraudMonitor.cpp" />
@@ -238,6 +239,7 @@
     <ClInclude Include="DbConnector.h" />
     <ClInclude Include="FloorProcessor.h" />
     <ClInclude Include="IFraudObserver.h" />
+    <ClInclude Include="IOrderObserver.h" />
     <ClInclude Include="order.h" />
     <ClInclude Include="IProcessor.h" />
     <ClInclude Include="PumpDumpProcessor.h" />

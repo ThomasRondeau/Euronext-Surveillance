@@ -30,7 +30,7 @@ public:
 	//All the methods to update the different components are in public because they need to be accessed by the observer
     void updatePriceChart(const time_t& time, const double& price);
     void updateOrderBook(const Order& order);
-    void updateRawData(const Order& order);
+    void updateRawDataOrder(const Order& order);
     void addAlert(const Alert& alert);
     void updateAlertLabelsPositions();
 

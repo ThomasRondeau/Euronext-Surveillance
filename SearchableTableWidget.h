@@ -24,7 +24,7 @@ public:
         setupConnections();
     }
 
-    // Méthode pour ajouter un trade
+	// Add trade to the table
     void addTrade(const QString& id, const QString& date, const QString& symbol,
         int quantity, double price) {
         if (static_cast<DataType>(dataTypeSelector->currentData().toInt()) != DataType::TRADES) {
@@ -41,7 +41,7 @@ public:
         table->setItem(row, 4, new QTableWidgetItem(QString::number(price, 'f', 2)));
     }
 
-    // Méthode pour ajouter un ordre
+	//Add order to the table
     void addOrder(const QString& id, const QString& date, const QString& symbol,
         const QString& type, int quantity, double price) {
         if (static_cast<DataType>(dataTypeSelector->currentData().toInt()) != DataType::ORDERS) {
@@ -59,7 +59,7 @@ public:
         table->setItem(row, 5, new QTableWidgetItem(QString::number(price, 'f', 2)));
     }
 
-    // Méthode pour ajouter une firme
+	//Add firm to the table
     void addFirm(const QString& id, const QString& name, const QString& status,
         const QString& authDate) {
         if (static_cast<DataType>(dataTypeSelector->currentData().toInt()) != DataType::FIRMS) {
@@ -75,7 +75,7 @@ public:
         table->setItem(row, 3, new QTableWidgetItem(authDate));
     }
 
-    // Méthode pour effacer toutes les données
+	//clear all the datas in the table
     void clearAllData() {
         table->setRowCount(0);
     }
@@ -184,7 +184,6 @@ private slots:
                     }
                 }
             }
-
             table->setRowHidden(row, !rowMatch);
         }
     }
